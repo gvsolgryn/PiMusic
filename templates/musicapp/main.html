@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="kr">
     <head>
-        <title>Pi Music</title>
+        <title>Pi Project</title>
         <meta charset="UTF-8">
         
         <!-- style css -->
@@ -16,17 +16,46 @@
         <meta property="og:description" content="두원공대 스마트 IT 프로젝트" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="627" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        <style>
+            .navbar
+            {
+                font-family: 'Source Code Pro', monospace;
+            }
+
+            .bg-primary-back {
+                background-color: #6c5ce7;
+            }
+            .body-bg-color{
+                background-color: lightgray;
+            }
+        </style>
     </head>
     
     
-    <body>
+    <body class="body-bg-color">
         <!-- 상단 네비바 -->
-        <nav>
+        <!--<nav>
             <ul class="nav-container">
                 <li class="nav-item"> <a href="#">PiMusic</a> </li>
                 <li class="nav-item"> <a href="music">음악(Pi Music)</a> </li>
                 <li class="nav-item"> <a href="video">동영상(Pi Video)</a> </li>
             </ul>
+        </nav>-->
+
+        <nav class="navbar navbar-expand-md navbar-primary bg-primary-back">
+            <div class="container">
+                <h1><a href="{% url 'main' %}" class="navbar-brand">
+                <strong style="color:white">Pi Project</strong></a></h1>
+                <div class="collapse navbar-collapse">
+                    <a href="{% url 'main' %}" class="btn btn-outline-light mt-2 mx-1">홈으로</a>
+                    <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1">Pi Music</a>
+                    <a href="{% url 'v_index' %}" class="btn btn-outline-light mt-2 mx-1">Pi Video</a>
+                </div>
+            </div>
         </nav>
         
         <!-- ppt 형식으로 된 메인 화면 -->
@@ -82,6 +111,7 @@
                 <li><a href="https://ko.javascript.info/">JavaScript 튜토리얼</a></li>
                 <li><a href="https://www.youtube.com/playlist?list=PLG7te9eYUi7uvROuVChYgAL5pMK7gnWSp">Do it! HTML5+CSS3 웹 표준의 정석</a></li>
             </ol>
+            <a href="admin/" class="btn btn-outline-light mt-2 mx-1">관리자 버튼</a>
         </div>
         
         <!-- 사이드 픽스 플로팅 화면 -->
@@ -97,8 +127,5 @@
                 <li> <a href="#UsedSrc">참고한 사이트 및 소스코드</a> </li>
             </ol>
         </div>
-        
     </body>
 </html>
-{% block content %} 
-{% endblock %}

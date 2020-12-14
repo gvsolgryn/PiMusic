@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     # apps
     'authentication.apps.AuthenticationConfig',
     'musicapp.apps.MusicappConfig',
-
     'videoapp.apps.VideoappConfig',
 ]
 

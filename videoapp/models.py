@@ -14,3 +14,6 @@ class Video(models.Model):
     video_img = models.FileField()
     tag = models.CharField(max_length=20,choices=Tag_Choice,default='Games')
     video_file = models.FileField()
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,26 @@
+{% extends 'videoapp/v_base.html' %}
+{% block title %} Games {% endblock title %}
+{% block body %}
+<br>
+<div class="container">
+    <header class="section-heading">
+        <h5 class="section-title">Games</h5>
+    </header>
+    <hr>
+    <!-- 영상 리스트 출력 -->
+    <div class="row" style="margin-right: 65px;margin-left:-15px">
+        {% if game_video %}
+            {% for video in game_video %}
+                <div class="col-md-2">
+                    <div class="hovereffect">
+                        <a class="btn btn-dark float-right" href="{% url 'v_detail' video.id %}">
+                            <img src="{{ video.video_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+                        </a>
+                        <h6>{{video.name}}</h6>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}

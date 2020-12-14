@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="/media/pmlogo.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %} {% endblock title %}</title>
+
+        <!-- style css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        <!-- 로고 소스 -->
+        <link rel="icon" type="image/png" href="/media/pmlogo.png"/>
+        
+        <!-- Source Code Pro 폰트 -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+
+        <!-- noto sans KR 폰트-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        
+
+
+        <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .font {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .navbar
+        {
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .bg-primary-back {
+            background-color: dimgray;
+        }
+
+        .bg-lights{
+            background-color: lightgray;
+        }
+        </style>
+        
+    </head>
+    
+    
+    <body class="bg-lights">
+        <!-- 상단 navbar -->
+        <nav class="navbar navbar-expand-md navbar-primary bg-primary-back">
+            <div class="container">
+                <h1><a href="{% url 'v_index' %}" class="navbar-brand">
+                <strong style="color:white">Pi Video</strong></a></h1>
+                <div class="collapse navbar-collapse">
+                    <a href="{% url 'main' %}" class="btn btn-outline-light mt-2 mx-1 font">홈으로</a>
+                    <a href="{% url 'v_index' %}" class="btn btn-outline-light mt-2 mx-1 font">메인 화면</a>
+                    <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1 font">Pi Music</a>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar">
+                    {% if request.user.is_active %}
+                        <h5 class="text-white mt-3 mx-2">{{ request.user.username }}</h5>
+                        <a href="{% url 'v_logout' %}" class="btn btn-light mt-2 mx-2 font"> 로그아웃 <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    {% else %}
+                        <a href="{% url 'v_login' %}" class="btn btn-light mt-2 mx-2 font"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</a>
+                        <a href="{% url 'v_signup' %}" class="btn btn-light mt-2 mx-2 font"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a>
+                    {% endif %}            
+                </div>
+            </div>
+        </nav>
+        {% block body %}
+        {% endblock body %}
+    </body>
+</html>

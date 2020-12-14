@@ -11,9 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono&display=swap" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
+
+    <!-- Noto Sans KR 폰트 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Source Code Pro 폰트 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link href="{% static 'musicapp/css/musicplayer.css' %}" rel="stylesheet">
     <style>
@@ -118,6 +123,11 @@
   body {
     /* Margin bottom by footer height */
     margin-bottom: 0px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .font {
+    font-family: 'Noto Sans KR', sans-serif;
   }
 
   .footer {
@@ -147,18 +157,18 @@
             <h1><a href="{% url 'index' %}" class="navbar-brand">
             <strong style="color:white">Pi Music</strong></a></h1>
             <div class="collapse navbar-collapse">
-                <a href="{% url 'main' %}" class="btn btn-outline-light mt-2 mx-1">홈으로</a>
-                <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1">메인 화면</a>
-                <a href="{% url 'v_main' %}" class="btn btn-outline-light mt-2 mx-1">Pi Video</a>
-                <a href="{% url 'all_songs' %}" class="btn btn-outline-light mt-2 mx-1">모든 음악</a>
+                <a href="{% url 'main' %}" class="btn btn-outline-light mt-2 mx-1 font">홈으로</a>
+                <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1 font">메인 화면</a>
+                <a href="{% url 'v_index' %}" class="btn btn-outline-light mt-2 mx-1 font">Pi Video</a>
+                <a href="{% url 'all_songs' %}" class="btn btn-outline-light mt-2 mx-1 font">모든 음악</a>
                 {% if request.user.is_active %}
                 
                 <div class="btn-group mt-2 mx-1">
-                    <a type="button" href="{% url 'mymusic' %}" class="btn btn-outline-light">내 음악</a>
+                    <a type="button" href="{% url 'mymusic' %}" class="btn btn-outline-light font">내 음악</a>
                     <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu font">
                         <a class="dropdown-item" href="{% url 'playlist' %}">재생목록</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'favourite' %}">좋아하는 음악</a>
@@ -170,14 +180,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar">
             {% if request.user.is_active %}
             <h5 class="text-white mt-3 mx-2">{{ request.user.username }}</h5>
-            <a href="{% url 'logout' %}" class="btn btn-light mt-2 mx-2"> 로그아웃 <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <a href="{% url 'logout' %}" class="btn btn-light mt-2 mx-2 font"> 로그아웃 <i class="fa fa-sign-out" aria-hidden="true"></i></a>
             {% else %}
-            <a href="{% url 'login' %}" class="btn btn-light mt-2 mx-2"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</a>
-            <a href="{% url 'signup' %}" class="btn btn-light mt-2 mx-2"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a>
+            <a href="{% url 'login' %}" class="btn btn-light mt-2 mx-2 font"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</a>
+            <a href="{% url 'signup' %}" class="btn btn-light mt-2 mx-2 font"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a>
             {% endif %}            
             </div>
         </div>
-
     </nav>
 
     {% block body %}
