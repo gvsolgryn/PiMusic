@@ -73,7 +73,7 @@ def v_signup_request(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('v_login')
     else:
         form = RegistrationForm()
 

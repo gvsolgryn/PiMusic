@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from django.urls import reverse
+
 from .models import *
+from .forms import *
 
 # Create your views here.
 def v_index(request):
@@ -36,14 +42,6 @@ def v_index(request):
     }
     return render(request, "videoapp/v_index.html", context)
 
-def v_detail(request, video_id):
-    videos = Video.objects.filter(id=video_id).first()
-
-    context = {
-        'video': videos,
-    }
-    return render(request, "videoapp/v_detail.html", context)
-
 def all_video(request):
     videos = Video.objects.all()
 
@@ -53,7 +51,7 @@ def all_video(request):
 
     context = {
         'video': videos,
-        'all_video': all_page_videos
+        'all_video': all_page_videos,
     }
     return render(request, "videoapp/all_video.html", context)
 
@@ -66,7 +64,7 @@ def game_video(request):
 
     context = {
         'video': videos,
-        'game_video': game_page_videos
+        'game_video': game_page_videos,
     }
     return render(request, "videoapp/game_video.html", context)
 
@@ -79,7 +77,7 @@ def anime_video(request):
 
     context = {
         'video': videos,
-        'anime_video': anime_page_videos
+        'anime_video': anime_page_videos,
     }
     return render(request, "videoapp/anime_video.html", context)
 
@@ -92,7 +90,39 @@ def vlog_video(request):
 
     context = {
         'video': videos,
-        'vlog_video': vlog_page_videos
+        'vlog_video': vlog_page_videos,
     }
     return render(request, "videoapp/vlog_video.html", context)
 
+@login_required(login_url='v_login')    
+def v_detail(request, video_id):
+    v_details = get_object_or_404(Video, pk=video_id)
+    comments = Comment.objects.filter(video_id=video_id)
+
+    if request.method == 'POST':
+        comment_form = VideoCommentForm(request.POST)
+
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.comment_user = request.user
+            comment.video = v_details
+            comment.save()
+            return redirect('v_detail', video_id)
+
+        else:
+            return redirect('v_detail', video_id)
+ 
+    else:
+        comment_form = VideoCommentForm()
+
+    video = Video.objects.filter(id=video_id).first()
+
+    context = {
+        'video': video,
+        'comments': comments,
+        'v_details': v_details,
+        'comments': comments,
+        'comment_form': comment_form,
+    }
+
+    return render(request, "videoapp/v_detail.html", context)
