@@ -154,8 +154,16 @@
 <body class="bg-lights">
     <nav class="navbar navbar-expand-md navbar-primary bg-primary-back">
         <div class="container">
-            <h1><a href="{% url 'index' %}" class="navbar-brand">
-            <strong style="color:white">Pi Music</strong></a></h1>
+            <h1><a href="{% url 'index' %}" class="navbar-brand"><strong style="color:white">Pi Music</strong></a></h1>
+            <div class="d-block d-sm-none d-md-none float-right">
+              {% if request.user.is_active %}
+            <h7 class="text-white mt-1 mx-1">{{ request.user.username }}</h5>
+            <a href="{% url 'logout' %}" class="btn btn-light mt-1 mx-1 font"> 로그아웃 <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-light mt-1 mx-1 font"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</a>
+            <a href="{% url 'signup' %}" class="btn btn-light mt-1 mx-1 font"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a>
+            {% endif %}
+            </div>
             <div class="collapse navbar-collapse">
                 <a href="{% url 'main' %}" class="btn btn-outline-light mt-2 mx-1 font">홈으로</a>
                 <a href="{% url 'index' %}" class="btn btn-outline-light mt-2 mx-1 font">메인 화면</a>
@@ -188,6 +196,25 @@
             </div>
         </div>
     </nav>
+
+  <div class="container-fluid d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+    {% if request.user.is_active %}
+      <div class="btn-group mt-2 mx-1">
+        <a type="button" href="{% url 'main' %}" class="btn btn-light font"> 홈으로 </a>
+        <a type="button" href="{% url 'index' %}" class="btn btn-light font"> PiMusic </a>
+        <a type="button" href="{% url 'v_index' %}" class="btn btn-light font"> PiVideo </a>
+        <a type="button" href="{% url 'mymusic' %}" class="btn btn-light font">내 음악</a>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu font">
+          <a class="dropdown-item" href="{% url 'playlist' %}">재생목록</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'favourite' %}">좋아하는 음악</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
 
     {% block body %}
     {% endblock body %}

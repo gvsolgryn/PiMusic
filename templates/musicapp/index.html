@@ -3,7 +3,6 @@
 {% block title %} Pi Music {% endblock title %}
 
 {% block body %} 
-
 <br>
 <div class="container">
   <div class="col-md-13">
@@ -20,6 +19,8 @@
           </div>
       </form>
   </div>
+  
+  <br>
 
 {% if query_search %}
   <header class="section-heading">
@@ -36,23 +37,26 @@
 <hr>
 {% endif %}
 <!-- Recent Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<div class="row">
   {% for song in recent_songs %}
-      <div class="col-md-2">
-          <div class="hovereffect">
-            <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+      <div class="col-md-2" style="margin:1%">
+              <div class="hovereffect d-flex justify-content-center align-items-center">
+                <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
             <div class="overlay">
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-             </div>
-             <h6>{{song.name}}</h6>
+            <h6 class="text-light">{{song.name}}</h6>
+                 </div>
+              </div>
           </div>
+          <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
       </div>
       {% endfor %}
-      <a href="{% url 'recent' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-
 </div>
-
+{% if not query_search %}
+<a href="{% url 'recent' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+{% endif %}
 <br>
 <br>
 {% endif %}
@@ -69,25 +73,29 @@
 <hr>
 {% endif %}
 <!-- Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<div class="row">
   {% if all_songs %}
   {% for song in all_songs %}
-      <div class="col-md-2">
-          <div class="hovereffect">
-            <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
-            <div class="overlay">
-                <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
-                <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-             </div>
-             <h6>{{song.name}}</h6>
+    <div class="col-md-2 d-flex justify-content-center align-items-center" style="margin:1%">
+      <div class="hovereffect d-flex justify-content-center align-items-center">
+         <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
+          <div class="overlay">
+            <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+            <h6 class="text-light">{{song.name}}</h6>
           </div>
+        </div>
       </div>
+      <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
+      </div>
+      
       {% endfor %}
       {% endif %}
-      {% if not query_search %}
-      <a href="{% url 'all_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-      {% endif %}
     </div>
+    {% if not query_search %}
+    <a href="{% url 'all_songs' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+    {% endif %}
 <br>
 <br>
 
@@ -99,26 +107,30 @@
 <hr>
 {% endif %}
 <!-- Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<div class="row">
   {% if english_songs %}
   {% for song in english_songs %}
-      <div class="col-md-2">
-          <div class="hovereffect">
-            <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+      <div class="col-md-2" style="margin:1%">
+              <div class="hovereffect d-flex justify-content-center align-items-center">
+                <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
             <div class="overlay">
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-            </div>
-            <h6>{{song.name}}</h6>
+            <h6 class="text-light">{{song.name}}</h6>
+                 </div>
+              </div>
           </div>
-          
+          <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
       </div>
       {% endfor %}
       {% endif %}
-      {% if not query_search %}
-      <a href="{% url 'english_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-      {% endif %}
+      
+      
     </div>
+    {% if not query_search %}
+    <a href="{% url 'english_songs' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+    {% endif %}
 <br>
 <br>
         <!-- Chiptune Songs -->
@@ -129,26 +141,30 @@
     <hr>
     {% endif %}
     <!-- Song list -->
-    <div class="row" style="margin-right: 65px;margin-left:-15px">
+    <div class="row">
       {% if chiptune_songs %}
       {% for song in chiptune_songs %}
-          <div class="col-md-2">
-              <div class="hovereffect">
-                <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+          <div class="col-md-2" style="margin:1%">
+              <div class="hovereffect d-flex justify-content-center align-items-center">
+                <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
                 <div class="overlay">
                     <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
                     <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                    <h6 class="text-light">{{song.name}}</h6>
                  </div>
-                 <h6>{{song.name}}</h6>
               </div>
-              
           </div>
+          <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
+      </div>
           {% endfor %}
           {% endif %}
-          {% if not query_search %}
-          <a href="{% url 'chiptune_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-          {% endif %}
+          
+          
     </div>
+    {% if not query_search %}
+    <a href="{% url 'chiptune_songs' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+    {% endif %}
     <br>
     <br>
 
@@ -160,25 +176,30 @@
 <hr>
 {% endif %}
 <!-- Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<div class="row">
   {% if Nier_songs %}
   {% for song in Nier_songs %}
-      <div class="col-md-2">
-          <div class="hovereffect">
-            <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+      <div class="col-md-2" style="margin:1%">
+              <div class="hovereffect d-flex justify-content-center align-items-center">
+                <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
             <div class="overlay">
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-             </div>
-             <h6>{{song.name}}</h6>
+             <h6 class="text-light">{{song.name}}</h6>
+                 </div>
+              </div>
           </div>
+          <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
       </div>
       {% endfor %}
       {% endif %}
-      {% if not query_search %}
-      <a href="{% url 'Nier_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-      {% endif %}
+      
+      
 </div>
+{% if not query_search %}
+<a href="{% url 'Nier_songs' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+{% endif %}
 <br>
 <br>
 
@@ -190,25 +211,30 @@
 <hr>
 {% endif %}
 <!-- Song list -->
-<div class="row" style="margin-right: 65px;margin-left:-15px">
+<div class="row">
   {% if DJMAX_songs %}
   {% for song in DJMAX_songs %}
-      <div class="col-md-2">
-          <div class="hovereffect">
-            <img src="{{ song.song_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
+      <div class="col-md-2" style="margin:1%">
+              <div class="hovereffect d-flex justify-content-center align-items-center">
+                <img src="{{ song.song_img.url}}"  height="160" width="160" style="border-radius: 8px 8px 8px 8px;">
             <div class="overlay">
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'play_song_index' song.id %}"><i class="fa fa-play" aria-hidden="true"></i></a>
                 <a class="btn btn-outline-light mt-5 mx-1" href="{% url 'detail' song.id %}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-             </div>
-             <h6>{{song.name}}</h6>
+             <h6 class="text-light">{{song.name}}</h6>
+                 </div>
+              </div>
           </div>
+          <div class="col-md-2 d-flex d-block d-sm-none d-md-none align-items-center justify-content-center">
+        <h6>{{song.name}}</h6>
       </div>
       {% endfor %}
       {% endif %}
+      
+      </div>
       {% if not query_search %}
-      <a href="{% url 'DJMAX_songs' %}" class="btn btn-primary float-right" style="height: 135px;"><center style="margin-top: 45px;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-      {% endif %}
-</div>
+      
+<a href="{% url 'DJMAX_songs' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+{% endif %}
 <br>
 <br>
 </div>
@@ -227,13 +253,13 @@
          </div>
          <div class="bottom">
           {% if first_time %}
-            <audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 10px;width: 100%;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
+            <audio controls=""  name="media" style="margin-left: 20px;margin-bottom: 5%;margin-right:5%;width: 100%;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
               {% else %}
-              <audio controls="" autoplay name="media" style="margin-left: 20px;margin-bottom: 10px;width: 100%;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
+              <audio controls="" autoplay name="media" style="margin-left: 20px;margin-bottom: 5%;margin-right:5%;width: 100%;height:30px"><source src="{{last_played.song_file.url}}" type="audio/mpeg" ></audio>
                 {% endif %}
           </div>
       </div>
     </div>
 </footer>
 
-{% endblock body %}''
+{% endblock body %}

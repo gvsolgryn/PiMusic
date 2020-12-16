@@ -3,28 +3,26 @@
 
 {% block body %}
 <div class="container">
-<br>
   <!-- 모든 영상 -->
   <header class="section-heading">
     <h5 class="section-title">모든 영상</h5>
   </header>
   <hr>
-  <!-- 영상 리스트 출력 -->
-  <div class="row" style="margin-right: 65px;margin-left:-15px">
+  <!-- 영상 리스트 출력  -->
+  <div class="row">
     {% if all_video %}
       {% for video in all_video %}
-        <div class="col-md-2">
-            <div class="hovereffect">
-              <a class="btn btn-dark float-right" href="{% url 'v_detail' video.id %}">
+        <div class="col-md-2" style="margin:1%">
+              <a class="btn btn-dark float-left" href="{% url 'v_detail' video.id %}">
                 <img src="{{ video.video_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
               </a>
-              <h6>{{video.name}}</h6>
-            </div>
+            <h6>{{video.name}}</h6>
         </div>
       {% endfor %}
     {% endif %}
-    <a href="{% url 'all_video' %}" class="btn btn-primary float-right" style="height: 149px;"><center style="margin-top: 65%;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
+    
   </div>
+  <a href="{% url 'all_video' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   <br>
   <br>
 
@@ -34,12 +32,12 @@
   </header>
   <hr>
   <!-- 영상 리스트 출력 -->
-  <div class="row" style="margin-right: 65px;margin-left:-15px">
+  <div class="row">
     {% if game_video %}
       {% for video in game_video %}
-        <div class="col-md-2">
+        <div class="col-md-2" style="margin:1%">
             <div class="hovereffect">
-              <a class="btn btn-dark float-right" href="{% url 'v_detail' video.id %}">
+              <a class="btn btn-dark float-left" href="{% url 'v_detail' video.id %}">
                 <img src="{{ video.video_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
               </a>
               <h6>{{video.name}}</h6>
@@ -47,8 +45,8 @@
         </div>
       {% endfor %}
     {% endif %}
-    <a href="{% url 'game_video' %}" class="btn btn-primary float-right" style="height: 149px;"><center style="margin-top: 65%;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   </div>
+  <a href="{% url 'game_video' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   <br>
   <br>
 
@@ -58,12 +56,12 @@
   </header>
   <hr>
   <!-- 영상 리스트 출력 -->
-  <div class="row" style="margin-right: 65px;margin-left:-15px">
+  <div class="row">
     {% if vlog_video %}
       {% for video in vlog_video %}
-        <div class="col-md-2">
+        <div class="col-md-2" style="margin:1%">
             <div class="hovereffect">
-              <a class="btn btn-dark float-right" href="{% url 'v_detail' video.id %}">
+              <a class="btn btn-dark float-left" href="{% url 'v_detail' video.id %}">
                 <img src="{{ video.video_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
               </a>
               <h6>{{video.name}}</h6>
@@ -71,8 +69,8 @@
         </div>
       {% endfor %}
     {% endif %}
-    <a href="{% url 'vlog_video' %}" class="btn btn-primary float-right" style="height: 149px;"><center style="margin-top: 65%;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   </div>
+  <a href="{% url 'vlog_video' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   <br>
   <br>
 
@@ -82,12 +80,12 @@
   </header>
   <hr>
   <!-- 영상 리스트 출력 -->
-  <div class="row" style="margin-right: 65px;margin-left:-15px">
+  <div class="row">
     {% if anime_video %}
       {% for video in anime_video %}
-        <div class="col-md-2">
+        <div class="col-md-2" style="margin:1%">
             <div class="hovereffect">
-              <a class="btn btn-dark float-right" href="{% url 'v_detail' video.id %}">
+              <a class="btn btn-dark float-left" href="{% url 'v_detail' video.id %}">
                 <img src="{{ video.video_img.url}}" class="img-responsive" height="135" width="135" style="border-radius: 8px 8px 8px 8px;">
               </a>
               <h6>{{video.name}}</h6>
@@ -95,8 +93,8 @@
         </div>
       {% endfor %}
     {% endif %}
-    <a href="{% url 'anime_video' %}" class="btn btn-primary float-right" style="height: 149px;"><center style="margin-top: 65%;">모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
-  </div>
+    </div>
+    <a href="{% url 'anime_video' %}" class="col-md btn btn-primary"><center>모두 보기 <i class="fa fa-arrow-right" aria-hidden="true"></i></center></a>
   <br>
   <br>
 

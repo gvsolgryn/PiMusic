@@ -1,13 +1,18 @@
-{% extends 'videoapp/v_base.html' %} {% block title %} {{video.name}} {% endblock title %} {% block header %}
+{% extends 'videoapp/v_base.html' %} 
+{% block title %} {{video.name}} {% endblock title %} 
+{% block header %}
 <style>
     .heart {
         font-size: 25px;
         color: red;
     }
 </style>
-{% endblock header %} {% block body %}
+{% endblock header %} 
+{% block body %}
 <div class="container bg-light">
-    <video class="container" controls width="1136" height="639">
+    <br>
+    <br>
+    <video class="container" controls autoplay>
             <source src="{{video.video_file.url}}">
         </video>
     <h3>{{video.name}}</h3>
